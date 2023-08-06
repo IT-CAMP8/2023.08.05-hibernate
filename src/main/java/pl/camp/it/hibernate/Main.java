@@ -37,7 +37,7 @@ public class Main {
         updateUser(userFromDB.get());*/
         //System.out.println(getOrderById(1).get().getUser());
 
-        /*Order o1 = new Order();
+        Order o1 = new Order();
         o1.setTotal(100.00);
 
         Order o2 = new Order();
@@ -52,18 +52,19 @@ public class Main {
         Order o5 = new Order();
         o5.setTotal(250.00);
 
-        user.getOrders().add(o1);
-        user.getOrders().add(o2);
-        user.getOrders().add(o3);
-        user.getOrders().add(o4);
-        user.getOrders().add(o5);
+        user.addOrder(o1);
+        user.addOrder(o2);
+        user.addOrder(o3);
+        user.addOrder(o4);
+        user.addOrder(o5);
 
-        persistUser(user);*/
+        persistUser(user);
 
         Optional<User> user3 = getUserById(1);
-        user3.get().getOrders().forEach(o -> o.setTotal(o.getTotal() + 50));
+        System.out.println(user3.get());
+        /*user3.get().getOrders().forEach(o -> o.setTotal(o.getTotal() + 50));
 
-        updateUser(user3.get());
+        updateUser(user3.get());*/
     }
 
     public static void persistUser(User user) {

@@ -7,8 +7,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    //@ManyToOne(fetch = FetchType.LAZY)
-    @Transient
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //@Transient
     private User user;
     private double total;
 
@@ -35,6 +35,7 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+        user.getOrders().add(this);
     }
 
     public double getTotal() {
@@ -49,6 +50,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", user_id=" + user.getId() +
                 ", total=" + total +
                 '}';
     }

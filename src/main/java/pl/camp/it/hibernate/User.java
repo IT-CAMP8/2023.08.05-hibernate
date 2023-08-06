@@ -13,10 +13,10 @@ public class User {
     @Column(unique = true)
     private String login;
     private String password;
-    @Enumerated(EnumType.STRING)
-    //@Convert(converter = RoleConverter.class)
+    //@Enumerated(EnumType.STRING)
+    @Convert(converter = RoleConverter.class)
     private Role role;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Order> orders = new HashSet<>();
 
     /*@Transient
@@ -74,6 +74,11 @@ public class User {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+        order.setUser(this);
     }
 
     @Override
